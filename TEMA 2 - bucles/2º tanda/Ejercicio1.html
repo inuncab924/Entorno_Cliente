@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numero Mayor</title>
+  </head>
+  <body>
+    <script>
+      function MayorQue() {
+        var n1 = prompt("Dame el primer numero");
+        var n2 = prompt("Dame el segundo numero");
+
+        if (n1 === null || n1 === "" || n2 === null || n2 === "") {
+          alert("No has introducido uno de los números o ninguno de los dos");
+        } else {
+          var res =
+            n1 > n2
+              ? "El numero " + n1 + " es mayor que " + n2
+              : "El numero " + n2 + " es mayor que " + n1;
+          alert(res);
+        }
+      }
+    </script>
+    <body onload="MayorQue()"></body>
+  </body>
+</html>

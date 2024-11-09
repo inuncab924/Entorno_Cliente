@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desc fac primos</title>
+</head>
+<body>
+
+    <script>
+        let num = parseInt(prompt("Introduce un numero"));
+        let factores = [];
+
+        
+        if (num > 0) {
+            for (let i = num; i >= 1; i--) {
+                if (num % i === 0) {
+                    factores.push(i);  
+                }
+            }
+
+            alert("Los factores del numero " + num + " son: " + factores);
+        } else {
+            alert("El numero debe ser mayor de cero ");
+        }
+    </script>
+    
+</body>
+</html>

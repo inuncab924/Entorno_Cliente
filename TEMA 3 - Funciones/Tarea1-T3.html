@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu figuras</title>
+</head>
+<body>
+
+    <script>      
+        function primerMenu() {
+            let figuraSeleccionada = null;
+            let variables = null;
+            let opcion = null;
+
+            // con el do while el menu se sigue mostrando una y otra vez despues de cada funcion realizada hasta que la eleccion sea 5
+            do{
+                let opcion = Number(prompt(
+                    "SELECCIONA UNA OPCION \n" +
+                    "1. Elije una figura \n" +
+                    "2. Introduzca valores de las variables \n" +
+                    "3. Calculo de volumen \n" +
+                    "4. Calculo del área \n" +
+                    "5. Finalizar"
+                ));
+
+                switch (opcion) {
+                    case 1:
+                        // el resultado de la function se guarda en la variable figuraSeleccionada
+                        figuraSeleccionada = elegirFigura();
+                        break;
+
+                    case 2:
+                        // el resultado de la function se guarda en la variable variables 
+                            variables = pideVariables(figuraSeleccionada);
+                        break;
+                        // 
+                    case 3:                      
+                            calcularVolumen(figuraSeleccionada, variables);                
+                        break;
+
+                    case 4:
+                            calcularArea(figuraSeleccionada, variables);              
+                        break;
+
+                    case 5:
+                        alert("Saliendo");
+                        return; 
+
+                    default:
+                        alert("Introduce un valor correcto");
+                        break;
+                }
+            }while (opcion !== 5)
+        }
+
+
+
+        // AQUI SE ELIGE LA FIGURA
+        function elegirFigura() {
+            let figura = Number(prompt("SELECCIONA UNA OPCION \n 1. Cubo \n 2. Esfera \n 3. Cilindro"));
+
+            if (figura === 1) {
+                alert("La figura elegida es Cubo");
+                return figura;
+            } else if (figura === 2) {
+                alert("La figura elegida es Esfera");
+                return figura;
+            } else if (figura === 3) {
+                alert("La figura elegida es Cilindro");
+                return figura;
+            } else {
+                alert("La eleccion no es correcta");
+                return elegirFigura(); 
+            }
+        }
+
+        // AQUI SE PIDEN LAS VARIABLES 
+        function pideVariables(figura) {
+          
+            let variables = [];
+
+            if (figura === 1) { // cubo
+                let ladoCubo = Number(prompt("Introduce el valor del lado del cubo:"));
+                variables.push(ladoCubo);
+                return variables;
+
+            } else if (figura === 2) { // esfera
+                let radioEsfera = Number(prompt("Introduce el valor del radio de la esfera:"));
+                // .push añade elemento al final del array
+                variables.push(radioEsfera);
+                return variables;
+
+            } else if (figura === 3) { // cilindro
+                let radioCilindro = Number(prompt("Introduce el valor del radio del cilindro:"));
+                let alturaCilindro = Number(prompt("Introduce el valor de la altura del cilindro:"));
+                variables.push(radioCilindro);
+                variables.push(alturaCilindro);
+                return variables;
+            } else {
+                alert("No correcto");
+                return pideVariables(figura); 
+            }
+        }
+
+        // AQUI SE HACEN LAS OPERACIONES CON LAS FORMULAS DE VOLUMEN
+        function calcularVolumen(figura, variables) {
+            let mensaje;
+
+            if (figura === 1) { // Cubo
+              // declaracion de la variable ladoCubo con el contenido del index cero del array de variables
+                let ladoCubo = variables[0];
+                let volumenCubo = ladoCubo ** 3;
+                mensaje = "El volumen de un cubo con lado " + ladoCubo + " cm es de: " + volumenCubo + " cm3";
+
+            } else if (figura === 2) { // Esfera
+               // declaracion de la variable radioEsfera con el contenido del index cero del array de variables
+                let radioEsfera = variables[0];
+                let volumenEsfera = (4 / 3) * Math.PI * (radioEsfera ** 3);
+                mensaje = "El volumen de una esfera con radio " + radioEsfera + " cm es de: " + volumenEsfera.toFixed(2) + " cm3";
+
+            } else if (figura === 3) { // Cilindro
+               // declaracion de la variable radioCilindro con el contenido del index cero del array de variables
+                let radioCilindro = variables[0];
+               // declaracion de la variable alturaCilindro con el contenido del index uno del array de variables
+                let alturaCilindro = variables[1];
+
+                let volumenCilindro = Math.PI * (radioCilindro ** 2) * alturaCilindro;
+                mensaje = "El volumen de un cilindro con altura " + alturaCilindro + " cm y radio " + radioCilindro + " cm es de: " + volumenCilindro.toFixed(2) + " cm3";
+            } else {
+                mensaje = "Algo pasa";
+            }
+
+            alert(mensaje);
+        }
+
+        // AQUI SE HACEN LAS OPERACIONES CON LAS FORMULAS DE AREA
+        function calcularArea(figura, variables) {
+            let mensaje;
+
+            if (figura === 1) { // Cubo
+                let ladoCubo = variables[0];
+                let areaCubo = 6 * (ladoCubo ** 2);
+                mensaje = "El area de un cubo con lado " + ladoCubo + " cm es de: " + areaCubo + " cm2";
+
+            } else if (figura === 2) { // Esfera
+                let radioEsfera = variables[0];
+                let areaEsfera = 4 * Math.PI * (radioEsfera ** 2);
+                mensaje = "El area de una esfera con radio " + radioEsfera + " cm es de: " + areaEsfera.toFixed(2) + " cm2";
+
+            } else if (figura === 3) { // Cilindro
+                let radioCilindro = variables[0];
+                let alturaCilindro = variables[1];
+                let areaCilindro = (2 * Math.PI * (radioCilindro ** 2)) + (2 * Math.PI * radioCilindro * alturaCilindro);
+                mensaje = "El area de un cilindro con altura " + alturaCilindro + " cm y radio " + radioCilindro + " cm es de: " + areaCilindro.toFixed(2) + " cm2";
+            } else {
+                mensaje = "Algo pasa";
+            }
+
+            alert(mensaje);
+        }
+
+    </script>
+
+   <body onload="primerMenu()"></body>
+   
+</body>
+</html>

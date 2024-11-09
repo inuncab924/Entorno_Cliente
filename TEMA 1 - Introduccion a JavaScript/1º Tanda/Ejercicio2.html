@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta hijos</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        Ejercicio que pregunta al usuario
+        el numero de hijos que tiene y luego 
+        muestra en pantalla la respuesta
+        */
+        // declaracion de la funcion
+        function numeroHijos(){
+            // variable que almacena el numero de hijos introducido
+            let mensaje;
+            
+            // En la variable numero se va a guardar el valor introducido en el prompt
+            var numero = prompt('¿cuantos hijos tienes?');
+            // si no se introduce valor o el valor da mensaje de error
+            if (numero == null || numero == ""){
+                mensaje = "Has cancelado o no introducido tu respuesta"
+            }else{
+                // si se introduce valor te devuelve este mensaje
+                mensaje = "Tienes " + numero + "hijo/s"
+            }
+            
+            // si se introduce un valor correcto se muestra esta alerta
+            alert("Tienes " + numero + " hijo/s")
+
+            
+        }
+    </script>
+    <!-- llamada del metodo en el codigo html -->
+    <body onload="numeroHijos()"></body>
+
+</body>
+</html>

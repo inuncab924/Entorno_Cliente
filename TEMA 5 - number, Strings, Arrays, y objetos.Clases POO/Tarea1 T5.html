@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mediana</title>
+
+    <script>
+      function introDatos() {
+        let arrNumeros = [];
+        let numero = null;
+
+        while (numero != "f") {
+          numero = prompt(
+            "Introduce numeros para los siguientes calculos \n" +
+              "Para salir escribe 'f' \n" +
+              "Escribe 'media' para calcular la media \n" +
+              "Escribe 'rango' para calcular el rango \n" +
+              "Escribe 'mediana' para calcular la mediana \n" +
+              "Escribe 'moda' para calcular la moda"
+          );
+
+          try {
+            if (numero === "f") {
+              alert("Saliendo...");
+              break;
+            } else if (numero.toLowerCase() === "media") {
+              if (arrNumeros.length === 0) {
+                alert("No hay numeros introducidos.");
+              } else {
+                media(arrNumeros);
+              }
+            } else if (numero.toLowerCase() === "rango") {
+              if (arrNumeros.length === 0) {
+                alert("No hay numeros introducidos.");
+              } else {
+                rango(arrNumeros);
+              }
+            } else if (numero.toLowerCase() === "moda") {
+              if (arrNumeros.length === 0) {
+                alert("No hay numeros introducidos");
+              } else {
+                modaNormal(arrNumeros);
+              }
+            } else if (numero.toLowerCase() === "mediana") {
+              if (arrNumeros.length === 0) {
+                alert("No hay numeros introducidos");
+              } else {
+                medianaParImpar(arrNumeros);
+              }
+            } else if (isNaN(numero) || numero <= 0) {
+              alert("Introduce un dato valido");
+            } else {
+              arrNumeros.push(Number(numero));
+              // alert("Los números introducidos son: " + arrNumeros);
+            }
+          } catch (err) {
+            alert(err);
+          }
+        }
+      }
+
+      // Calcular la media
+      function media(arrNumeros) {
+        let sumaTotal = 0;
+
+        for (let i = 0; i < arrNumeros.length; i++) {
+          sumaTotal += arrNumeros[i];
+        }
+
+        let media = sumaTotal / arrNumeros.length;
+
+        alert("La media es: " + media);
+      }
+
+      // calcular rango
+      function rango(arrNumeros) {
+        try {
+          let rango;
+          let menor = 99999999999999999;
+          let mayor = 0;
+
+          for (let i = 0; i < arrNumeros.length; i++) {
+            let numero = arrNumeros[i];
+
+            if (numero < menor) {
+              menor = numero;
+            }
+
+            if (numero > mayor) {
+              mayor = numero;
+            }
+          }
+
+          rango = mayor - menor;
+          alert("El rango es " + mayor + " - " + menor + " = " + rango);
+        } catch (err) {
+          alert(err);
+        }
+      }
+
+      /*
+        Mediana hay que ordenarlos
+        
+        valores [3, 4, 1, 2, 5]
+        
+        1, 2, 3, 4  mediana es el 3 (numero de valores impares)
+        
+        1, 5, 3, 2, 4, 6   (numero de valores)
+        1, 2, 3, 4, 5, 6   madiana (4+3)/2 = 3.5
+        
+        */
+
+      function medianaParImpar(arrNumeros) {
+        let mediana = null;
+
+        // ordenar el array de numeros ordanando los numeros de menor a mayor
+        arrNumeros.sort((a, b) => a - b);
+
+        if (arrNumeros.length === 0) {
+          alert("No has introducido numeros");
+        }
+
+        // mediana para numero de datos pares
+        if (arrNumeros.length % 2 === 0) {
+          let indiceEnmedio1 = (arrNumeros.length / 2);
+          let indiceEnmedio2 = (arrNumeros.length / 2) - 1;
+
+          let numeroEnmedio1 = arrNumeros[Math.floor(indiceEnmedio1)];
+          let numeroEnmedio2 = arrNumeros[Math.floor(indiceEnmedio2)];
+
+          numeroEnmedio = (numeroEnmedio1 + numeroEnmedio2) / 2
+
+
+          alert("La mediana es: " + numeroEnmedio);
+
+        // mediana para numero de datos impares  
+        }else{
+
+          // Calcular el índice del medio
+          let indiceEnmedio = arrNumeros.length / 2;
+
+          // Usar Math.floor() para obtener un índice entero
+          let numeroEnmedio = arrNumeros[Math.floor(indiceEnmedio)];
+
+          alert("La mediana es: " + numeroEnmedio);
+
+        }
+
+
+        
+      }
+
+      /*
+        ACLARACIONES MODA
+          -- si hay una moda pues se muestra unico numero
+
+          -- si no se repite ninguno -- mensaje que no hay moda
+
+          -- si se repiten dos numeros ej (5, 5, 3, 5, 5) es 2 y 5
+
+          -- (2, 2, 3, 5, 8, 5) -- la moda es 2 y 5 -- 2,2,3,5,5,8  no hay abyacencia (numero enmedio)
+              devuelve el numero de modas
+
+          -- (2,2,1,5,8,5) -- (1, 2, 2, 5, 5, 8)  no hay abyacencia
+          se hace la media del numero de modas (siempre 2) si hay tres modas que devuelva las 3
+
+        */
+
+        
+      // calcular moda Normal
+
+      function modaNormal(arrNumeros) {
+        try {
+          let contadorRepeticiones = []; // array que cuenta el numero de repeticiones de cada numero [i]
+          let arrModaNormal = []; // array que muestra la moda
+          let numMaxRepeticiones = 0; // numero que mas se repite
+
+          // Contar repeticiones
+          for (let i = 0; i < arrNumeros.length; i++) {
+            let numero = arrNumeros[i];
+
+            if (
+              contadorRepeticiones[numero] === null ||
+              contadorRepeticiones[numero] === undefined
+            ) {
+              contadorRepeticiones[numero] = 0; //se inicia a cero el contador si es la primera vez que aparece el numero
+            } else {
+              // incrementar contador cuando el numero se repita
+              contadorRepeticiones[numero] += 1;
+            }
+
+            // Asignacion del numero con mayor numero de repeticiones
+            if (contadorRepeticiones[numero] > numMaxRepeticiones) {
+              numMaxRepeticiones = contadorRepeticiones[numero];
+            }
+          }
+
+          // Definir los números que más se repiten
+          for (let i = 0; i < contadorRepeticiones.length; i++) {
+            if (contadorRepeticiones[i] === numMaxRepeticiones) {
+              arrModaNormal.push(i);
+            }
+          }
+
+          alert("Los numeros que se repiten mas son: " + arrModaNormal);
+        } catch (err) {
+          alert(err);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <body onload="introDatos()"></body>
+  </body>
+</html>

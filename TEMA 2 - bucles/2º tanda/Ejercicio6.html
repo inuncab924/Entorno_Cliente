@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuacion 2º grado</title>
+</head>
+<body>
+
+    <script>
+        
+        var a = parseFloat(prompt("coeficiente a"))
+        var b = parseFloat(prompt("coeficiente b"))
+        var c = parseFloat(prompt("coeficiente c"))
+
+       // la prueba sale bien
+       // var a = 1
+       // var b = -5
+       // var c = 6
+
+
+        //dentro de la raiz cuadrada
+        let dentroRaiz = b ** 2 - (4 * a * c)
+
+        // raiz cuadrada
+        let raiz = Math.sqrt(dentroRaiz)
+       
+
+        // parte arriba (dividendo)
+        let perro = (-b + raiz) / (2 * a)
+
+        let sanxe = (-b - raiz) / (2 * a)
+
+        // resultados de la raiz positivo y negativo
+        
+        alert("El resultado negativo es: " + perro + "\nEl resultado positivo es: " + sanxe)
+        
+
+    </script>
+    
+</body>
+</html>

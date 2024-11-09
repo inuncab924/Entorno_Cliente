@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De km/h a m/s</title>
+</head>
+<body>
+    <script>
+        /*
+        Crea un archivo web que solicite una velocidad expresada en km/h
+        y a continuación, se muestre el valor en m/s.
+        */
+        // declaracion del metodo
+        function convertidor(){
+            // variables
+            let mensaje;
+            let kms = prompt('Introduce kms por hora')
+            
+            // condicion para  que se  ejecute el codigo
+            if (kms == null || kms == ""){
+                mensaje = "No has introducido ninguna cantidad"
+            }else{
+                const VALORCONVERSION = 2.237
+                let valorConvertido = kms/VALORCONVERSION
+                mensaje = kms + " / " + VALORCONVERSION + " = " + valorConvertido + " m/s"
+               
+            }
+               // mensaje que se muestra cuando se ejecuta el codigo
+                alert(mensaje)
+        }        
+        </script>
+        <!-- llamada del metodo en el codigo html -->
+    <body onload="convertidor()"></body>
+
+</body>
+</html>

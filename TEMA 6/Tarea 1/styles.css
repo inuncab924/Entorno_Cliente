@@ -1,0 +1,60 @@
+/* Borde para todos los campos cuando no estan bien rellenos */
+
+input[type="text"]:required {
+    border: 1px solid red;
+}
+
+
+input[type="date"]:required {
+    border: 1px solid red;
+}
+
+
+input[type="number"]:required {
+    border: 1px solid red;
+}
+
+
+input[type="email"]:required {
+    border: 1px solid red;
+}
+
+
+input[type="number"]:required {
+    border: 1px solid red;
+}
+
+
+/* Borde verde verde cuando esten bien rellenos */
+
+input[type="text"]:valid {
+    border: 1px solid green;
+}
+
+
+input[type="date"]:valid {
+    border: 1px solid green;
+}
+
+
+input[type="number"]:valid {
+    border: 1px solid green;
+}
+
+
+input[type="email"]:valid {
+    border: 1px solid green;
+}
+
+
+input[type="number"]:valid {
+    border: 1px solid green;
+}
+
+
+/* Borde verde verde cuando tabulador (foco) */
+
+input[type="text"]:focus {
+    border: 1px solid green;
+}
+

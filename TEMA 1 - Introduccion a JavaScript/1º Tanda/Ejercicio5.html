@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumar dos números</title>
+    <h1>Suma numeros</h1>
+</head>
+<body>
+    <script>
+        // declaracion del metodo
+        function sumarNumeros() {
+            // variable que almacena un mensaje valido o invalido
+            let mensaje;
+            // en las variables numero1 y numero2 se van a almacenar los datos introducidos
+            let numero1 = prompt('Introduce el primer numero:');
+            let numero2 = prompt('Introduce el segundo numero:');
+            // si no se introduce algun dato o ninguno muestra mensaje de error
+            if (numero1 == null || numero1 == "" || numero2 == null || numero2 === "") {
+                mensaje = "No has introducido uno de los numeros o ninguno de los dos";
+            } else {
+                // si se introducen valores correctos se realiza la suma
+                let suma = parseInt(numero1) + parseInt(numero2);
+                mensaje = "La suma de " + numero1 + " y " + numero2 + " es: " + suma;
+            }
+            // se muestra el mensaje que corresponda
+            alert(mensaje);
+        }
+    </script>
+     
+    <!-- llamada del metodo en el codigo html -->
+    <body onload="sumarNumeros()"></body>
+    
+</body>
+</html>

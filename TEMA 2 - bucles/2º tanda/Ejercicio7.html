@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial de un numero</title>
+</head>
+<body>
+    
+    <script>
+        let num = parseInt(prompt("Introduce un numero"));
+   
+       
+       let mensaje;
+       let resultado = 1
+       
+       if(num == 0){
+            mensaje = "El factorial de 0 es 1"
+       }else{
+
+        for(let i = 1; i <= num; i++){
+            resultado *= i
+        }
+
+        alert ("El factorial de " + num + " es " + resultado);
+    }   
+    </script>
+
+</body>
+</html>
+

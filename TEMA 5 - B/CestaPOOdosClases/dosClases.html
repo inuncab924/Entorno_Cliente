@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script>
+    class Articulo {
+        //#articulo = [];
+        #cod;
+        #nombre;
+        #precio;
+        #cantidad;
+
+        get cod() {
+            return this.#cod;
+        }
+
+        get precio() {
+            return this.#precio;
+        }
+
+        get cantidad() {
+            return this.#cantidad;
+        }
+
+        get nombre() {
+            return this.#nombre;
+        }
+
+        constructor(cod, nombre, precio, cantidad) {
+            /* this.#articulo.cod = cod;
+             this.#articulo.nombre = nombre;
+             this.#articulo.precio = precio;
+             this.#articulo.cantidad = cantidad;
+             return this.#articulo
+
+             */
+            this.#cod = cod;
+            this.#nombre = nombre;
+            this.#precio = precio;
+            this.#cantidad = cantidad;
+        }
+
+
+        muestra() {
+            return this.#cod + " " + this.#nombre + " " + this.#precio + " " + this.#cantidad
+        }
+    }
+
+    class Principal {
+        #numArticulos = 1;
+        #articulos = [];
+        #opcion;
+
+        constructor(numArticulos, articulos, opcion) {
+            this.#numArticulos = numArticulos;
+            this.#articulos = articulos;
+            this.#opcion = opcion;
+        }
+
+        cesta() {
+            var subtotal = 0;
+            var total = 0;
+            var resp = 'Cod.  Nombre  Precio  Cantidad  Subtotal\n';
+            for (var i = 0; i < this.#articulos.length; i++) {
+                if (this.#articulos[i] != null) {
+                    var articulo = this.#articulos[i];
+                    var subtotalArticulo = articulo.precio * articulo.cantidad;
+                    subtotal += subtotalArticulo;
+                    resp += `${articulo.cod}         ${articulo.nombre}          ${articulo.precio}          ${articulo.cantidad}                 ${subtotalArticulo}\n`;
+                }
+            }
+            total = subtotal;
+            resp += "Total: " + total;
+            alert(resp);
+        }
+
+        insetar() {
+            //Pedimos los parametros
+            var nombre = prompt("Dígame el nombre del artículo");
+            var precioArt = parseFloat(prompt("Dígame el precio del artículo"));
+            var cantidad = parseInt(prompt("Dígame la cantidad del artículo"));
+            var u = false;
+            //Comprobamos que el nombre no este repetido
+            for (var i = 0; i < this.#articulos.length; i++) {
+                if (nombre == this.#articulos[i].nombre) {
+                    u = true
+                }
+            }
+            //Metemos el articulo si todo sale según lo previsto
+            if (precioArt > 0 && cantidad > 0 && u == false) {
+                var articulo = new Articulo(this.#numArticulos, nombre, precioArt, cantidad);
+
+                this.#articulos.push(articulo);
+                alert("Artículo insertado");
+                return this.#articulos;
+            } else {
+                alert("No se ha podido insertar. El precio o la cantidad son inválidos.");
+            }
+        }
+
+        eliminar() {
+            //Eliminamos el articulo si coincide con algun nombre dentro del array
+            var cod = prompt("Digame el codigo del artículo")
+            var f = false;
+            for (var i = 0; i < this.#articulos.length; i++) {
+                if (cod == this.#articulos[i].cod) {
+                    this.#articulos.splice(i, 1);
+                    f = true
+                }
+            }
+            if (f == true) {
+                alert("Articulo eliminado")
+            } else {
+                alert("Articulo no eliminado")
+            }
+            return this.#articulos
+
+        }
+
+        menu() {
+            try {
+                do {
+                    this.#opcion = prompt(`
+        1: Ver cesta
+        2: Insertar artículo
+        3: Borrar artículo
+        4: Vaciar cesta
+        5: Salir
+        `);
+                    //Si escogemos la tercera, nos llevara a la funcion para enseñar la cesta
+                    if (this.#opcion == 1) {
+                        this.cesta(this.#articulos)
+                    }
+                    //Si escogemos la segunda, nos llevara a la funcion para añadir el articulo
+                    if (this.#opcion == 2) {
+                        this.insetar(this.#articulos, this.#numArticulos)
+                        this.#numArticulos++
+
+                    }
+                    //Si escogemos la tercera, nos llevara a la funcion para eliminar el articulo
+                    if (this.#opcion == 3) {
+                        this.eliminar(this.#articulos)
+                    }
+                    //Seteamos el array vacio para que la cesta se vacie
+                    if (this.#opcion == 4) {
+                        this.#articulos = [];
+                        alert("cesta vacia")
+                    } else {
+
+                    }
+                } while (this.#opcion != 5);
+            } catch (Exception) {
+                alert("a")
+            }
+        }
+
+
+    }
+
+    var menu = new Principal(1, [],);
+    menu.menu()
+    alert("Saliendo..")
+</script>
+</body>
+
+</html>

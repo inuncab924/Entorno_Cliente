@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cesta compra</title>
+  </head>
+
+  <body>
+    <script>
+      function menu() {
+        let opcion;
+        let cesta = [];
+        let contador = 1;
+        
+        do {
+          opcion = Number(
+            prompt(
+              "Selecciona una opcion \n" +
+                "1. Ver Cesta \n" +
+                "2. Insertar Articulo \n" +
+                "3. Borrar articulo \n" +
+                "4. Vaciar cesta \n" +
+                "5. Salir "
+            )
+          );
+
+          switch (opcion) {
+            case 1:
+              verCesta(cesta);
+              break;
+            case 2:
+              anadirArticulo(cesta, contador);
+              contador ++;
+              break;
+            case 3:
+              borrarProducto(cesta)
+              break;
+            case 4:
+              alert("4. Vaciar cesta");
+              cesta = [];
+              break;
+            case 5:
+              alert("5. Salir");
+              break;
+            default:
+              alert("Introduce un valor correcto");
+              break;
+          }
+        } while (opcion !== 5);
+      }
+
+      // funcion que añade articulos{} a cesta[]
+      function anadirArticulo(cesta, contador) {
+       
+       // let cesta = []; si la declaro aqui se inicia vacia de nuevo
+
+        let articulo = new Object();  // let articulo = {} es lo mismo
+
+        articulo.codigo = contador ;
+        articulo.nombre = prompt("Introduce el nombre del articulo");
+        articulo.cantidad = prompt("Introduce la cantidad del articulo");
+        articulo.precio = parseFloat(prompt("Introduce el precio del articulo"));
+        articulo.subtotal = articulo.cantidad * articulo.precio;
+
+        cesta.push(articulo);
+      }
+
+
+
+      function verCesta(cesta) {
+        let mensaje = "cod.     nombre      precio      cantidad        subtotal      TOTAL\n";
+        let total = 0; 
+    
+        for (let i = 0; i < cesta.length; i++) {
+            let producto = cesta[i];
+            let subtotal = producto.precio * producto.cantidad; 
+    
+            mensaje +=
+                producto.codigo + "                     " +
+                producto.nombre + "  " +
+                producto.precio + "                        " +
+                producto.cantidad + "                        " +
+                subtotal + "          \n";
+    
+            total += subtotal; 
+    
+        mensaje += "-----------------------------------------------------\n";
+        mensaje += "TOTAL: " + total; 
+        alert(mensaje);
+    }
+    
+  }
+
+
+     
+
+      function borrarProducto(cesta) {
+        if (cesta.length === 0) {
+            alert("No hay productos en la cesta");
+            return; 
+        }
+    
+        let idproductoBorrar = Number(prompt("Introduce el codigo para borrar"));
+    
+  
+    
+        for (let i = 0; i < cesta.length; i++) {
+            if (cesta[i].codigo === idproductoBorrar) {
+                cesta.splice(i, 1);
+                break; 
+            }
+        }
+    
+        
+    }
+    
+
+
+    
+
+
+    </script>
+  
+
+
+  <body onload="menu()"></body>
+</html>

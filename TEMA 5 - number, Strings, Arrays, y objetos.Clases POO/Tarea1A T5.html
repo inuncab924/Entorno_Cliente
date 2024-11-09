@@ -1,0 +1,83 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vectores</title>
+        <script>
+
+          /*
+Solicite una serie de valores y los guarde en una matriz o array de dos dimensiones (para cualquier número de filas y columnas)  mediante una función. 
+A continuación, en otra función, tomará esos valores y va a separar los números pares de los impares guardando cada grupo en un array simple.
+Debe mostrar ambos arrays en una ‘alert ()’
+          */
+
+          function introDatos() {
+            let arrNumeros = []; // Array para guardar los numeros
+            let arrayVacio = []; // Array 2D
+    
+            let numero = null;
+    
+            while (numero !== "f") {
+              numero = prompt("Introduce numeros \n f para salir \n c para añadir array actual \n x para ver pares e impares");
+    
+              if (numero === "f") {
+                alert("Saliendo...");
+                break;
+    
+              } else if (numero === "c") {
+                if (arrNumeros.length > 0) {
+                  if (arrayVacio.length < 2) { // limita el array a bidimensional a maximo lineas
+                    arrayVacio.push(arrNumeros.slice()); // Añade la fila al array 2D copiando el contenido (pero no lo borra de arrNumeros)
+                    arrNumeros = []; // Limpiar el array temporal declarando array vacio
+                } else {
+                    alert("Array bidimensional completo");
+                }
+                
+                  arrayVacio.push(arrNumeros.slice()); // Añade la fila al array 2D copiando el contenido (pero no lo borra de arrNumeros)
+                  arrNumeros = []; // Limpiar el array temporal declarando array vacio
+                } else {
+                  alert("No hay numeros para copiar");
+                }
+    
+              } else if (numero === "x") {
+                if (arrayVacio.length > 0) {
+                  parImpar(arrayVacio); 
+                } else {
+                  alert("No hay numeros para parImpar");
+                }
+    
+              } else if (isNaN(numero) || numero <= 0) {
+                alert("Introduce un dato valido");
+              } else {
+                arrNumeros.push(Number(numero)); // Añadir numero al array temporal
+              }
+            }
+          }
+    
+          function parImpar(arrayVacio) {
+            let arrImpares = [];
+            let arrPares = [];
+    
+            // Recorrer el array 2D
+            for (let i = 0; i < arrayVacio.length; i++) {
+              for (let j = 0; j < arrayVacio[i].length; j++) {
+                
+                let num = arrayVacio[i][j] 
+              
+                if (num % 2 !== 0) {
+                  arrImpares.push(num); 
+                } else {
+                  arrPares.push(num); 
+                }
+              
+              }
+            }
+    
+            alert("Los Pares son: " + arrPares + "\nLos Impares son: " + arrImpares);
+          }
+        </script>
+    </head>
+    <body onload="introDatos()"></body>
+    </html>
+    

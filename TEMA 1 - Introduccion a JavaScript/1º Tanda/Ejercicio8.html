@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diferentes comillas</title>
+</head>
+<body>
+    
+   <script>
+    // declaracion del metodo
+    function saludador(){
+        // variable que almacena el mensaje que corresponda
+        let saludo; 
+        // aqui se almacena el nombre introducido
+        let nombre = prompt("¿como te llamas?")
+        // condicion para que se ejecute el codigo
+        if (nombre == null || nombre == ""){
+            saludo = 'dime tu nombre o no saludo'
+        }else{
+            saludo = "Hola " + nombre;
+        }
+        // mensaje que se muestra al final de la ejecucion
+        alert(saludo)
+    }
+
+   </script>
+   <!-- llamada del metodo en el codigo html -->
+   <body onload="saludador()"></body>
+
+</body>
+</html>

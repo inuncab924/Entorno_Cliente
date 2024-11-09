@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menor a mayor</title>
+</head>
+<body>
+
+    <script>
+
+        var n1 = prompt("dame el primer numero")     // 123, 132,  213, 231, 312, 321  ok
+        var n2 = prompt("dame el segundo numero") 
+        var n3 = prompt("dame el tercer numero") 
+ 
+        let mensaje;
+
+        if (n1 <= n2 && n2 <= n3) {
+            mensaje = "Números ordenados picachu: " + n1 + ", " + n2 + ", " + n3;
+
+        } else if (n1 <= n3 && n3 <= n2) {
+            mensaje = "Números ordenados hola: " + n1 + ", " + n3 + ", " + n2;
+
+        } else if (n2 <= n1 && n1 <= n3) {
+            mensaje = "Números ordenados zapato: " + n2 + ", " + n1 + ", " + n3;
+
+        } else if (n2 <= n3 && n3 <= n1) {
+            mensaje = "Números ordenados azucar: " + n2 + ", " + n3 + ", " + n1;
+
+        } else if (n3 <= n1 && n1 <= n2) {
+            mensaje = "Números ordenados nocilla: " + n3 + ", " + n1 + ", " + n2;
+
+        } else {
+            mensaje = "Números ordenados mortadela: " + n3 + ", " + n2 + ", " + n1;
+        }
+        
+     
+            alert(mensaje)
+
+    </script>
+    
+</body>
+</html>
