@@ -11,10 +11,10 @@ class Producto {
 
   // Constructor
   constructor(id, nombre, precio, imagen) {
-    this.#id = id;
-    this.#nombre = nombre;
-    this.#precio = precio;
-    this.#imagen = imagen;
+    this.#producto.id = id;
+    this.#producto.nombre = nombre;
+    this.#producto.precio = precio;
+    this.#producto.imagen = imagen;
     return this.#producto;
   }
 
