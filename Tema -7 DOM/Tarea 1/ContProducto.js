@@ -3,22 +3,43 @@ class ContProductos {
 
   // Aquí guardamos los productos y el contenedor donde vamos a mostrarlos
   constructor(productos) {
-    this.productos = productos; // Guardamos la lista de productos
+    this.productos = productos; 
     this.contenedor = document.getElementById("contProductos"); // Buscamos el lugar donde queremos mostrar los productos
-    this.renderizarProductos(); // Llamamos al método para mostrar los productos
+    this.renderizarProductos(); 
+  }
+
+  // Este método va a poner los productos en la página
+  renderizarProductos(){
+    // Recorremos todos los productos y creamos su contenedor
+    this.productos.forEach(producto => {
+      // Crea un contenedor div para cada producto
+      var div = document.createElement("div");
+      div.setAttribute("class", "producto"); 
+
+      // Crear la imagen del producto
+      var img = document.createElement("img");
+      img.setAttribute("src", producto.imagen); 
+      img.setAttribute("alt", producto.nombre); 
+      img.setAttribute("class", "producto-imagen"); 
+
+      // Crear el nombre del producto
+      var nombre = document.createElement("h2");
+      nombre.textContent = producto.nombre; 
+
+      // Crear el precio del producto
+      var precio = document.createElement("p");
+      precio.textContent = `Precio: $${producto.precio}`;
+
+      // Agregar la imagen, nombre y precio al div del producto
+      div.appendChild(img);
+      div.appendChild(nombre);
+      div.appendChild(precio);
+
+      // Agregar el div del producto al contenedor en el HTML
+      this.contenedor.appendChild(div);
+    });
   }
 }
-
-// Este método va a poner los productos en la página
-
-// crea un elemento div
-var div = document.createElement("div");
-
-// crear el contenido de cada div (producto)
-var contenido = document.createTextNode("Hola");
-
-//
-document.body.appendChild(div);
 
 // Los productos que vamos a mostrar
 var productos = [
@@ -31,7 +52,7 @@ var productos = [
   },
   {
     id: "2",
-    nombre: "Melón",
+    nombre: "Calabaza",
     precio: 60.0,
     imagen:
       "https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg",
