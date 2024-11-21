@@ -1,39 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos - Amazon</title>
 
     <!-- Enlace a Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-oP6M0t06V9yEw3Zp1jXH9F6gzy1SO6yHl8q5MuoHXyZA78byRb/xkFmjM1JZ3yHf" crossorigin="anonymous">
-    
+
+    <!-- css bootstrap 533 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- bootstrapicons 1.11.3 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link href="styles.css" rel="stylesheet" type="text/css">
     <script src="Cesta.js"></script>
     <script src="ContProducto.js"></script>
     <script src="Producto.js"></script>
 </head>
+
 <body>
-
     <div class="container">
-        <header class="pb-3 mb-4 border-bottom">
-            <i class="bi bi-file-binary"></i>
-            <span class="fs-6">Fruteria Paquita</span>
-        </header>
+        <div class="jumbotron">
+            <h1><img src="https://img.icons8.com/color/48/000000/google-photos.png"> De todo ...</h1>
+            <h5>Ejemplo cálculo de cesta o carrito de la compra ... </h5>
+        </div>
+        <div class="row">
+            <!-- Productos 1 al 3-->
+            <div id="contProductos" class="col-sm-7 row">
 
-        <div class="container-main">
-            <div>
-                <h5>Productos</h5>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="contProductos"></div>
+                <div class="contenedor">
+                    <div class="card" style="max-width: 300px; min-width: 150px; width: 100%;">
+                        <img src="https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg"
+                            class="card-img-top" alt="..." style="max-width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calabaza</h5>
+                            <input type="number" step="1.00" placeholder="cantidad">
+                            <a href="#" class="btn btn-primary">Añadir</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="max-width: 300px; min-width: 150px; width: 100%;">
+                        <img src="https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg"
+                            class="card-img-top" alt="..." style="max-width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calabaza</h5>
+                            <input type="number" step="1.00" placeholder="cantidad">
+                            <a href="#" class="btn btn-primary">Añadir</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="max-width: 300px; min-width: 150px; width: 100%;">
+                        <img src="https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg"
+                            class="card-img-top" alt="..." style="max-width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calabaza</h5>
+                            <input type="number" step="1.00" placeholder="cantidad">
+                            <a href="#" class="btn btn-primary">Añadir</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="contenedor">
+                    <!-- Productos 4 al 6-->
+                    <div class="card" style="max-width: 300px; min-width: 150px; width: 100%;">
+                        <img src="https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg"
+                            class="card-img-top" alt="..." style="max-width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calabaza</h5>
+                            <input type="number" step="1.00" placeholder="cantidad">
+                            <a href="#" class="btn btn-primary">Añadir</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="max-width: 300px; min-width: 150px; width: 100%;">
+                        <img src="https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg"
+                            class="card-img-top" alt="..." style="max-width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calabaza</h5>
+                            <input type="number" step="1.00" placeholder="cantidad">
+                            <a href="#" class="btn btn-primary">Añadir</a>
+                        </div>
+                    </div>
+
+                    <div class="card" style="max-width: 300px; min-width: 150px; width: 100%;">
+                        <img src="https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg"
+                            class="card-img-top" alt="..." style="max-width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calabaza</h5>
+                            <input type="number" step="1.00" placeholder="cantidad">
+                            <a href="#" class="btn btn-primary">Añadir</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
             </div>
-
-            <div class="product-list">
-                <h5>Lista de productos añadidos</h5>
-                <ul id="listaProductos"></ul>
+            <!-- Cesta -->
+            <div class="col-sm-5">
+                <h2> <img src="https://img.icons8.com/cute-clipart/64/000000/shopping-basket-success.png"> Cesta</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cod.</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio(€)</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cesta"></tbody>
+                </table>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total: <span id="total"></span> &euro;</p>
+                <!-- Precio total Iva-->
+                <p class="text-right">Total + IVA (21%):<strong> <span id="totalIva"></span></strong> &euro;</p>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- javascript bootstrap 533-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
 </body>
+
 </html>
