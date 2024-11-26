@@ -3,8 +3,8 @@ class ContProductos {
 
   constructor(productos) {
     this.productos = productos;
-    this.contenedor = document.getElementById("contProductos"); // Buscamos el lugar donde queremos mostrar los productos
-    // No llamamos a pintarProductos() aquí, lo haremos más tarde
+    this.contenedor = document.getElementById("contProductos"); 
+    
   }
 
   pintarProductos() {
@@ -108,6 +108,6 @@ var productos = [
 
 // Cuando la página cargue, mostramos los productos
 window.onload = function () {
-  const contenedorProductos = new ContProductos(productos); // Creamos un objeto de la clase
-  contenedorProductos.pintarProductos(); // Llamamos al método para pintar los productos
+  const contenedorProductos = new ContProductos(productos); 
+  contenedorProductos.pintarProductos(); 
 };
