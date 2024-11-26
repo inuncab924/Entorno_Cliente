@@ -3,16 +3,16 @@ class ContProductos {
 
   constructor(productos) {
     this.productos = productos;
-    this.contenedor = document.getElementById("contProductos"); // Buscamos el lugar donde queremos mostrar los productos
-    // No llamamos a pintarProductos() aquí, lo haremos más tarde
+    this.contenedor = document.getElementById("contProductos"); 
+    
   }
 
   pintarProductos() {
-    this.productos.forEach((producto) => {
+    productos.forEach((producto) => {
       // Crear la card de producto
       let nuevoDiv = document.createElement("div");
       nuevoDiv.className = "card";
-      nuevoDiv.style.maxWidth = "300px";
+      nuevoDiv.style.maxWidth = "230px";
       nuevoDiv.style.minWidth = "150px";
       nuevoDiv.style.width = "100%";
 
@@ -22,22 +22,23 @@ class ContProductos {
       imagen.className = "card-img-top";
       imagen.alt = producto.nombre;
       imagen.style.maxWidth = "100%";
-      imagen.style.height = "auto";
+      imagen.style.height = "50%";
 
       // Crear el cuerpo del card
       let cuerpoCard = document.createElement("div");
       cuerpoCard.className = "card-body";
 
-      // Crear el título
+      // Crear el titulo
       let tituloCard = document.createElement("h5");
       tituloCard.className = "card-title";
       tituloCard.textContent = producto.nombre;
 
-      // Crear el input de cantidad
+      // Crear el input 
       let input = document.createElement("input");
       input.type = "number";
+      input.style.width = "50%";
       input.step = "1.00";
-      input.placeholder = "Cantidad";
+      input.placeholder = "Cant";
 
       // Crear el botón para añadir
       let boton = document.createElement("a");
