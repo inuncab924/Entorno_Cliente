@@ -50,7 +50,7 @@ class ContProductos {
       boton.textContent = "Añadir";
 
       // Añadir el evento del boton (CORREGIR)
-      // arguments.addEventListenner('click', ()=> this.#cesta.AddCesta(info['id'], elemUnidades.value))
+      // a.addEventListenner('click', ()=> this.#cesta.AddCesta(info['id'], elemUnidades.value))
 
       // Añadir los elementos al cuerpo de la card
       cuerpoCard.appendChild(tituloCard);
