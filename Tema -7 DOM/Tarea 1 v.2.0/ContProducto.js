@@ -3,7 +3,10 @@ class ContProductos {
 
   constructor(productos) {
     this.productos = productos;
-    this.contenedor = document.getElementById("contProductos"); 
+    this.contenedor = document.getElementById("contProductos");
+    
+    // Help
+
     
   }
 
@@ -40,11 +43,14 @@ class ContProductos {
       input.step = "1.00";
       input.placeholder = "Cant";
 
-      // Crear el botón para añadir
+      // Crear el boton para añadir
       let boton = document.createElement("a");
       boton.href = "#";
       boton.className = "btn btn-primary";
       boton.textContent = "Añadir";
+
+      // Añadir el evento del boton (CORREGIR)
+      // arguments.addEventListenner('click', ()=> this.#cesta.AddCesta(info['id'], elemUnidades.value))
 
       // Añadir los elementos al cuerpo de la card
       cuerpoCard.appendChild(tituloCard);
