@@ -45,12 +45,13 @@ class ContProductos {
 
       // Crear el boton para añadir
       let boton = document.createElement("a");
+      boton.id = "";
       boton.href = "#";
       boton.className = "btn btn-primary";
       boton.textContent = "Añadir";
 
       // Añadir el evento del boton (CORREGIR)
-      // a.addEventListenner('click', ()=> this.#cesta.AddCesta(info['id'], elemUnidades.value))
+      boton.addEventListener('click', ()=> this.#cesta.AnadirCesta(info['id'], input.value))
 
       // Añadir los elementos al cuerpo de la card
       cuerpoCard.appendChild(tituloCard);
