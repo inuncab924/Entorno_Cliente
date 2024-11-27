@@ -12,8 +12,8 @@ class ContProductos {
       // Crear la card de producto
       let nuevoDiv = document.createElement("div");
       nuevoDiv.className = "card";
-      nuevoDiv.style.maxWidth = "230px";
-      nuevoDiv.style.minWidth = "150px";
+      nuevoDiv.style.maxWidth = "200px";
+      nuevoDiv.style.minWidth = "100px";
       nuevoDiv.style.width = "100%";
 
       // Crear la imagen
@@ -110,5 +110,5 @@ var productos = [
 // Cuando la página cargue, mostramos los productos
 window.onload = function () {
   const contenedorProductos = new ContProductos(productos); // Creamos un objeto de la clase
-  contenedorProductos.pintarProductos(); // Llamamos al método para pintar los productos
+  contenedorProductos.pintarProductos(); 
 };
