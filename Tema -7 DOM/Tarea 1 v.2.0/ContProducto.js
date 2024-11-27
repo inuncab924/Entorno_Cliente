@@ -5,13 +5,10 @@ class ContProductos {
     this.productos = productos;
     this.contenedor = document.getElementById("contProductos");
     
-    // Help
-
-    
   }
 
   pintarProductos() {
-    productos.forEach((producto) => {
+    productos.forEach(producto => {
       // Crear la card de producto
       let nuevoDiv = document.createElement("div");
       nuevoDiv.className = "card";
@@ -49,9 +46,10 @@ class ContProductos {
       boton.href = "#";
       boton.className = "btn btn-primary";
       boton.textContent = "Añadir";
+      // Añadir el evento del boton
+      boton.addEventListener('click', () => this.#cesta.AnadirCesta(info['id'], input.value))
 
-      // Añadir el evento del boton (CORREGIR)
-      boton.addEventListener('click', ()=> this.#cesta.AnadirCesta(info['id'], input.value))
+
 
       // Añadir los elementos al cuerpo de la card
       cuerpoCard.appendChild(tituloCard);

@@ -1,31 +1,78 @@
 class Cesta {
   #productos = [];
-  #total = 0;
 
   constructor(productos) {
-    this.productos = productos;
-    this.cesta = cesta; // Referencia a la cesta (instancia de la clase Cesta)
-    // this.#load(); // carga productos disponibles desde cesta
+    this.productos = productos; // Productos disponibles
   }
 
   pintarCesta() {
-    // acumular cesta
-    // vaciar cesta
-    // crear elementos a partir de la cesta
-    // obtener el item de la base de productos por su id
-    // generar fila tabla
-    // pintar total y total iva
+    const tbody = document.getElementById("cesta");
+    tbody.innerHTML = ""; // Limpiar la tabla antes de rellenarla
+
+    let total = 0;
+
+    // Recorrer los productos de la cesta para pintar filas
+    this.#productos.forEach((producto) => {
+        const subtotal = producto.cant * producto.precio;
+        total += subtotal;
+
+        // Crear una fila
+        const fila = document.createElement("tr");
+
+        // Columna: id
+        const celdaId = document.createElement("td");
+        celdaId.textContent = producto.id;
+        fila.appendChild(celdaId);
+
+        // Columna: Nombre
+        const celdaNombre = document.createElement("td");
+        celdaNombre.textContent = producto.nombre;
+        fila.appendChild(celdaNombre);
+
+        // Columna: Cantidad
+        const celdaCant = document.createElement("td");
+        celdaCant.textContent = producto.cant;
+        fila.appendChild(celdaCant);
+
+        // Columna: Precio
+        const celdaPrecio = document.createElement("td");
+        celdaPrecio.textContent = producto.precio.toFixed(2);
+        fila.appendChild(celdaPrecio);
+
+        // Columna: Subtotal
+        const celdaSubtotal = document.createElement("td");
+        celdaSubtotal.textContent = subtotal.toFixed(2);
+        fila.appendChild(celdaSubtotal);
+
+        tbody.appendChild(fila);
+    });
+
+    // Actualizar el total y total con IVA
+    const totalIva = total * 1.21;
+    document.getElementById("total").textContent = total.toFixed(2);
+    document.getElementById("totalIva").textContent = totalIva.toFixed(2);
   }
 
   AnadirCesta(idBot, cant) {
-    // busca el id en el array de objetos producto
-    let productoBuscar = productos.find((producto) => producto.id === idBot);
+    // Buscar el producto en el array original de productos
+    let productoBuscar = this.productos.find((producto) => producto.id === idBot);
 
-    // si no existe lo añade y si existe lo suma
-    if (this.productoBuscar){
-        producto.cant += cant
+    // Si el producto ya está en la cesta, aumentar la cantidad
+    let productoEnCesta = this.#productos.find((producto) => producto.id === idBot);
+    if (productoEnCesta) {
+        productoEnCesta.cant += parseInt(cant);
+    } else {
+        // Si no está en la cesta, añadirlo con la cantidad inicial
+        this.#productos.push({ ...productoBuscar, cant: parseInt(cant) });
     }
-    // Renderizar la cesta
+
+    // Actualizar la tabla de la cesta
     this.pintarCesta();
   }
 }
+
+// Cuando la página cargue, se inicie la cesta
+window.onload = function () {
+  const cesta = new Cesta(productos); // Creamos un objeto de la clase Cesta con los productos disponibles
+  cesta.pintarCesta(); // Llamamos al método para pintar la cesta
+};

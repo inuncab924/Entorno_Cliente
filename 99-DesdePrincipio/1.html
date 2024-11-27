@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Esta función se ejecuta cuando el usuario hace clic en el botón
+        function f1() {
+            // Selecciona todos los elementos que tienen la clase 'class1'
+            var x = document.querySelectorAll(".class1");
+            
+            // Recorre todos los elementos seleccionados y cambia su color de texto a rojo
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.color = "#FF0000"; // Cambia el color de texto a rojo (#FF0000)
+            }
+
+            // Ahora selecciona todos los elementos <button> de la página
+            x = document.querySelectorAll("button");
+
+            // Cambia el color del borde del primer botón (índice 0) a azul
+            x[0].style.borderColor = "blue"; 
+
+            // Selecciona todos los elementos <h1> y <h2> dentro del div con id="div1"
+            x = document.getElementById("div1").querySelectorAll("h1, h2");
+
+            // Recorre todos los elementos seleccionados (h1 y h2) y cambia su color de texto a verde
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.color = "green"; // Cambia el color de texto a verde
+            }
+        }
+    </script>
+</head>
+<body>   
+    <!-- Botón que al hacer clic ejecuta la función f1() -->
+    <button id="bot1" onclick="f1()" >Pulsar</button>
+    
+    <!-- Dos párrafos con la clase 'class1', serán modificados cuando se ejecute f1() -->
+    <p id="p1" class="class1">Texto 1...</p>
+    <p id="p2" class="class1">Texto 2 ...</p>
+
+    <!-- Un div con id="div1" que contiene elementos <h1> y <h2> -->
+    <div id="div1">
+        <h1>Título 1</h1>
+        <h2>Texto 3...</h2>
+    </div>
+    
+</body>
+</html>

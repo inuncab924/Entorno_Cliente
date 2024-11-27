@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1><img src="https://img.icons8.com/color/48/000000/google-photos.png"> Tienda Online</h1>
+            <h5>Catálogo de productos</h5>
+        </div>
+        <div class="row">
+            <div id="contProductos" class="col-sm-7 row"></div>
+            <div class="col-sm-5">
+                <h2><img src="https://img.icons8.com/cute-clipart/64/000000/shopping-basket-success.png"> Cesta</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cod.</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio (€)</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cesta"></tbody>
+                </table>
+                <hr>
+                <p class="text-right">Total: <span id="total"></span> €</p>
+                <p class="text-right">Total + IVA (21%): <strong><span id="totalIva"></span></strong> €</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Definición de la clase Producto
+        class Producto {
+            constructor(id, nombre, precio, img) {
+                this.id = id;
+                this.nombre = nombre;
+                this.precio = precio;
+                this.img = img;
+            }
+        }
+
+        // Definición de la clase ContProductos
+        class ContProductos {
+            constructor(productos) {
+                this.productos = productos;
+                this.contenedor = document.getElementById("contProductos");
+            }
+
+            renderizarProductos() {
+                this.productos.forEach(producto => {
+                    let nuevoDiv = document.createElement("div");
+                    nuevoDiv.className = "card";
+                    nuevoDiv.style.maxWidth = "200px";
+                    nuevoDiv.style.minWidth = "100px";
+                    nuevoDiv.style.width = "100%";
+
+                    let imagen = document.createElement("img");
+                    imagen.src = producto.img;
+                    imagen.className = "card-img-top";
+                    imagen.alt = producto.nombre;
+                    imagen.style.maxWidth = "100%";
+                    imagen.style.height = "50%";
+
+                    let cuerpoCard = document.createElement("div");
+                    cuerpoCard.className = "card-body";
+
+                    let tituloCard = document.createElement("h5");
+                    tituloCard.className = "card-title";
+                    tituloCard.textContent = producto.nombre;
+
+                    let input = document.createElement("input");
+                    input.type = "number";
+                    input.style.width = "50%";
+                    input.step = "1";
+                    input.placeholder = "Cantidad";
+
+                    let boton = document.createElement("button");
+                    boton.className = "btn btn-primary";
+                    boton.textContent = "Añadir";
+                    boton.onclick = () => {
+                        let cantidad = parseInt(input.value) || 1; // Si no se introduce un número, por defecto se añadirá 1
+                        añadirACesta(producto.id, cantidad);
+                    };
+
+                    cuerpoCard.appendChild(tituloCard);
+                    cuerpoCard.appendChild(input);
+                    cuerpoCard.appendChild(boton);
+
+                    nuevoDiv.appendChild(imagen);
+                    nuevoDiv.appendChild(cuerpoCard);
+
+                    this.contenedor.appendChild(nuevoDiv);
+                });
+            }
+        }
+
+        // Definición de la clase Cesta
+        class Cesta {
+            #productos;
+            #productosDisponibles;
+
+            constructor(productosDisponibles) {
+                this.#productos = [];
+                this.#productosDisponibles = productosDisponibles;
+                this.cargarCesta();
+            }
+
+            cargarCesta() {
+                const cestaGuardada = JSON.parse(localStorage.getItem('cesta'));
+                if (cestaGuardada) {
+                    this.#productos = cestaGuardada;
+                }
+                this.renderizarCesta();
+            }
+
+            guardarCesta() {
+                localStorage.setItem('cesta', JSON.stringify(this.#productos));
+            }
+
+            añadirProducto(id, cantidad) {
+                const productoExistente = this.#productos.find(prod => prod.id === id);
+                if (productoExistente) {
+                    productoExistente.cantidad += cantidad;
+                } else {
+                    const producto = this.#productosDisponibles.find(prod => prod.id === id);
+                    this.#productos.push({ ...producto, cantidad });
+                }
+                this.guardarCesta();
+                this.renderizarCesta();
+            }
+
+            eliminarProducto(id) {
+                this.#productos = this.#productos.filter(prod => prod.id !== id);
+                this.guardarCesta();
+                this.renderizarCesta();
+            }
+
+            renderizarCesta() {
+                const cestaElement = document.getElementById("cesta");
+                cestaElement.innerHTML = '';
+
+                let total = 0;
+
+                this.#productos.forEach(producto => {
+                    const subtotal = producto.precio * producto.cantidad;
+                    total += subtotal;
+
+                    let tr = document.createElement("tr");
+
+                    tr.innerHTML = `
+                        <td>${producto.id}</td>
+                        <td>${producto.nombre}</td>
+                        <td>${producto.cantidad}</td>
+                        <td>${producto.precio} €</td>
+                        <td>${subtotal} €</td>
+                        <td><button onclick="eliminarDeCesta(${producto.id})" class="btn btn-danger">Eliminar</button></td>
+                    `;
+
+                    cestaElement.appendChild(tr);
+                });
+
+                document.getElementById("total").textContent = total.toFixed(2);
+                document.getElementById("totalIva").textContent = (total * 1.21).toFixed(2);
+            }
+        }
+
+        // Definir productos
+        const productos = [
+            new Producto(1, 'Zanahoria', 15.99, 'https://cdn.pixabay.com/photo/2016/07/29/12/50/vegetable-1553195_1280.jpg'),
+            new Producto(2, 'Calabaza', 60.0, 'https://cdn.pixabay.com/photo/2023/09/27/02/39/pumpkin-8278499_1280.jpg'),
+            new Producto(3, 'Melocotón', 12.5, 'https://cdn.pixabay.com/photo/2019/07/31/16/44/peaches-4375600_960_720.jpg'),
+            new Producto(4, 'Naranja', 20.0, 'https://cdn.pixabay.com/photo/2016/10/07/13/36/tangerines-1721590_1280.jpg'),
+            new Producto(5, 'Mango', 85.0, 'https://media.istockphoto.com/id/686104710/es/foto/mango-fruta-y-rebanadas-de-mango.jpg?s=2048x2048&w=is&k=20&c=mva961qSVAkWu6IsZ8ss8gJXuQU56ZCF8TYGZVhC57E='),
+            new Producto(6, 'Manzana', 45.0, 'https://cdn.pixabay.com/photo/2016/07/21/09/04/apple-1532055_1280.jpg')
+        ];
+
+        const cesta = new Cesta(productos);
+        const contProductos = new ContProductos(productos);
+
+        // Pintar productos cuando la página cargue
+        window.onload = () => {
+            contProductos.renderizarProductos();
+        };
+
+        // Función para añadir producto a la cesta
+        function añadirACesta(productoId, cantidad) {
+            cesta.añadirProducto(productoId, cantidad);
+        }
+
+        // Función para eliminar producto de la cesta
+        function eliminarDeCesta(productoId) {
+            cesta.eliminarProducto(productoId);
+        }
+    </script>
+</body>
+
+</html>
