@@ -1,9 +1,10 @@
 class ContProductos {
-  #cesta = [];
+  cesta = [];
 
   constructor(productos) {
     this.productos = productos;
     this.contenedor = document.getElementById("contProductos");
+    
     
   }
 
@@ -47,7 +48,7 @@ class ContProductos {
       boton.className = "btn btn-primary";
       boton.textContent = "Añadir";
       // Añadir el evento del boton
-      boton.addEventListener('click', () => this.#cesta.AnadirCesta(info['id'], input.value))
+      boton.addEventListener('click', () => this.cesta.AnadirCesta(producto.id['id'], input.value))
 
 
 

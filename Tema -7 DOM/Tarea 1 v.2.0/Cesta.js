@@ -19,7 +19,7 @@ class Cesta {
         // Crear una fila
         const fila = document.createElement("tr");
 
-        // Columna: id
+        // Columna id
         const celdaId = document.createElement("td");
         celdaId.textContent = producto.id;
         fila.appendChild(celdaId);
@@ -29,17 +29,17 @@ class Cesta {
         celdaNombre.textContent = producto.nombre;
         fila.appendChild(celdaNombre);
 
-        // Columna: Cantidad
+        // Columna Cantidad
         const celdaCant = document.createElement("td");
         celdaCant.textContent = producto.cant;
         fila.appendChild(celdaCant);
 
-        // Columna: Precio
+        // Columna Precio
         const celdaPrecio = document.createElement("td");
         celdaPrecio.textContent = producto.precio.toFixed(2);
         fila.appendChild(celdaPrecio);
 
-        // Columna: Subtotal
+        // Columna Subtotal
         const celdaSubtotal = document.createElement("td");
         celdaSubtotal.textContent = subtotal.toFixed(2);
         fila.appendChild(celdaSubtotal);
