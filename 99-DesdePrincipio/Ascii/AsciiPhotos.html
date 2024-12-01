@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raquelin, pon aqui tu foto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #ascii {
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-top: 20px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 600px;  /* Ajustar el tamaño del área de texto */
+            overflow: auto;  /* Agregar scroll si es necesario */
+            font-size: 10px;  /* Tamaño de fuente ajustado para mejor visibilidad */
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Raquelin, pon aqui tu foto</h1>
+    <input type="file" id="upload" accept="image/*">
+    <canvas id="canvas" style="display:none;"></canvas>
+    <pre id="ascii"></pre>
+
+    <script>
+        const maxWidth = 200;  // Mayor ancho para imagen más detallada
+        const maxHeight = 80;  // Mayor altura para imagen más detallada
+        const asciiChars = '@%#*+=-:. ';  // Caracteres que usaremos para la conversión
+
+        document.getElementById('upload').addEventListener('change', handleImageUpload);
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        generateAscii(img);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("No se seleccionó ninguna imagen.");
+            }
+        }
+
+        function generateAscii(image) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Mantener la relación de aspecto correcta
+            const aspectRatio = image.height / image.width;
+            let newWidth = maxWidth;
+            let newHeight = Math.floor(newWidth * aspectRatio);
+
+            // Limitar la altura si excede el máximo
+            if (newHeight > maxHeight) {
+                newHeight = maxHeight;
+                newWidth = Math.floor(newHeight / aspectRatio);
+            }
+
+            // Establecer el tamaño del canvas
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+
+            // Dibujar la imagen en el canvas
+            ctx.drawImage(image, 0, 0, newWidth, newHeight);
+
+            // Obtener los datos de los píxeles de la imagen
+            const imageData = ctx.getImageData(0, 0, newWidth, newHeight);
+            const pixels = imageData.data;
+
+            let asciiImage = '';
+
+            // Convertir cada píxel a un valor de brillo utilizando una fórmula de luminancia
+            for (let i = 0; i < pixels.length; i += 4) {
+                const r = pixels[i];
+                const g = pixels[i + 1];
+                const b = pixels[i + 2];
+
+                // Fórmula para la luminancia (percepción humana del brillo)
+                const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                const charIndex = Math.floor((brightness / 255) * (asciiChars.length - 1));
+                asciiImage += asciiChars[charIndex];
+
+                // Añadir salto de línea después de cada fila
+                if ((i / 4 + 1) % newWidth === 0) {
+                    asciiImage += '\n';
+                }
+            }
+
+            // Mostrar la imagen ASCII
+            document.getElementById('ascii').textContent = asciiImage;
+        }
+    </script>
+
+</body>
+</html>
