@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Oscuro</title>
+</head>
+<body>
+    <button id="toggleDarkMode">Activar Modo Oscuro</button>
+
+    <h1>Bienvenido a mi página web</h1>
+    <p>Este es un ejemplo de cómo cambiar al modo oscuro sin usar CSS externo.</p>
+
+    <script>
+        // Seleccionamos el botón para activar/desactivar el modo oscuro
+        const toggleButton = document.getElementById("toggleDarkMode");
+
+        // Función que cambia al modo oscuro y viceversa
+        toggleButton.addEventListener("click", () => {
+            // Verificamos si el fondo es oscuro
+            const isDarkMode = document.body.style.backgroundColor === 'rgb(18, 18, 18)';
+
+            // Si ya está en modo oscuro, lo cambiamos a modo claro
+            if (isDarkMode) {
+                document.body.style.backgroundColor = 'white';
+                document.body.style.color = 'black';
+                toggleButton.textContent = 'Activar Modo Oscuro';
+            } else {
+                // Si está en modo claro, lo cambiamos a modo oscuro
+                document.body.style.backgroundColor = '#121212';
+                document.body.style.color = 'white';
+                toggleButton.textContent = 'Activar Modo Claro';
+            }
+        });
+    </script>
+</body>
+</html>
